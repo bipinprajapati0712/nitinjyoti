@@ -1,0 +1,98 @@
+package Com;
+import java.util.ArrayList;
+
+public class EmployeManager {
+	static ArrayList<Employee> eList= new ArrayList<Employee>();
+	static ArrayList<Employee> List1= new ArrayList<Employee>();
+	
+	public static void main(String[] args) {
+		EmployeManager empMan= new EmployeManager();
+			Employee E1= new Employee("Emp01", "Vim", 21, 20000);
+			Employee E2= new Employee("Emp02", "Vanshika", 22, 28000);
+			Employee E3= new Employee("Emp03", "Abhishek", 22, 35000);
+			Employee E4= new Employee("Emp04", "Rahul", 25, 30000);
+			Employee E5= new Employee("Emp02", "Seeta", 20,25000);
+			
+			//Add employees
+			System.out.println(empMan.addEmployee(E1));
+			System.out.println(empMan.addEmployee(E2));
+			System.out.println(empMan.addEmployee(E3));
+			System.out.println(empMan.addEmployee(E4));
+			System.out.println(empMan.addEmployee(E5));
+			
+			
+			//Original List of Employees
+			System.out.println("List of Employees\n");
+			for(Employee emp:eList){
+				System.out.println(emp.getEmpId() + emp.getEmp_name());
+				
+			}
+		// TODO Auto-generated method stub
+			//Remove Employees
+			System.out.println(empMan.removeEmployee(E1));
+			System.out.println("List after removing the given employees\n");
+			for(Employee emp:eList){
+				System.out.println(emp.getEmpId() + emp.getEmp_name());
+				
+			}
+			System.out.println(empMan.updateEmployee(E4));
+			System.out.println("List after updating the details of employee\n");
+			for(Employee emp:eList){
+				System.out.println(emp.getEmpId() + " " + emp.getEmp_name() + " " + emp.getAge());
+			}
+
+	}
+	
+	//Method to Register a new Employee
+	public boolean addEmployee(Employee e){
+		boolean flag=true;
+		for(Employee emp:eList) {
+			if(emp.getEmpId().equals (e.getEmpId())) {
+				flag=false;
+				break;
+			}
+			
+		}
+		if (flag)
+			eList.add(e);
+		return flag;
+	}
+	// Method to remove an employee
+	public boolean removeEmployee(Employee e){
+		boolean flag=false;
+		for(Employee emp:eList){
+			if(emp.getEmpId().equals(e.getEmpId())) {
+				flag=false;
+				break;
+			}
+		}
+		if(flag)
+			eList.remove(e);
+		return flag;
+	}
+// Method to update details of an employee
+	public boolean updateEmployee(Employee e1){
+		boolean flag=true;
+		Employee e = null;
+		for(Employee emp:eList){
+			if(e1.getEmpId().equals(e1.getEmpId())){
+				flag=false;
+				break;
+			}
+		}
+		if(flag)
+			eList.set(0, e);
+		return flag;
+	}
+
+//Method to print list of employees of age>22
+public ArrayList<Employee> AgeList(){
+	ArrayList<Employee> AgeList1=new ArrayList<Employee>();
+	for(Employee emp:eList){
+		if(emp.getAge()>22){
+			AgeList1.add(emp);
+		}
+	}
+	return AgeList1;
+}
+}
